@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paquetes · Marketing Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #0d1117;
+  --ink2:   #3a4452;
+  --ink3:   #6b7a8d;
+  --ink4:   #9daab8;
+  --paper:  #f5f2ec;
+  --paper2: #ede9e0;
+  --paper3: #e4dfd4;
+  --accent: #1a6b4a;
+  --accent2:#2d9468;
+  --accentL:#e8f5ef;
+  --gold:   #c9a84c;
+  --white:  #ffffff;
+  --radius: 4px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(26,107,74,.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(201,168,76,.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 72px 48px 80px;
+}
+
+/* ── HEADER ── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--paper3);
+  gap: 40px;
+}
+
+.header-left {}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 62px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: .98;
+  letter-spacing: -.02em;
+}
+
+.header-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-tagline {
+  font-size: 13px;
+  color: var(--ink3);
+  line-height: 1.7;
+  max-width: 200px;
+  margin-left: auto;
+}
+
+.header-services {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+  align-items: flex-end;
+}
+
+.service-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  color: var(--ink3);
+  text-transform: uppercase;
+}
+
+.service-pill::before {
+  content: '·';
+  color: var(--gold);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ── CARDS GRID ── */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--paper3);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(13,17,23,.08);
+}
+
+.card.master {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+/* card top bar */
+.card-bar {
+  height: 3px;
+  background: var(--paper2);
+}
+.card.master .card-bar {
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+}
+
+.card-inner {
+  padding: 40px 36px;
+}
+
+.plan-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 10px;
+}
+
+.card.master .plan-label { color: rgba(255,255,255,.35); }
+
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin-bottom: 16px;
+}
+
+.card.master .card-name { color: var(--white); }
+
+.card-desc {
+  font-size: 14px;
+  color: var(--ink3);
+  line-height: 1.7;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--paper2);
+  margin-bottom: 28px;
+}
+
+.card.master .card-desc {
+  color: rgba(255,255,255,.45);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+/* ── PRICES ── */
+.price-block {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--paper2);
+  margin-bottom: 28px;
+}
+
+.card.master .price-block {
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.price-row:last-of-type { margin-bottom: 0; }
+
+.price-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink4);
+}
+.card.master .price-label { color: rgba(255,255,255,.35); }
+
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+
+.card.master .price-amount { color: var(--white); }
+
+.price-cop {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--ink4);
+  margin-left: 4px;
+  font-weight: 400;
+}
+.card.master .price-cop { color: rgba(255,255,255,.3); }
+
+.price-note {
+  font-size: 12px;
+  color: var(--ink4);
+  margin-top: 12px;
+  line-height: 1.6;
+  font-style: italic;
+}
+.card.master .price-note { color: rgba(255,255,255,.25); }
+
+/* ── FEATURES ── */
+.section { margin-bottom: 24px; }
+
+.section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--paper2);
+}
+.card.master .section-title {
+  color: rgba(255,255,255,.25);
+}
+.card.master .section-title::after {
+  background: rgba(255,255,255,.07);
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.feat-check {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--accentL);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feat-check svg {
+  width: 8px;
+  height: 8px;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.card.master .feat-check {
+  background: rgba(45,148,104,.2);
+}
+.card.master .feat-check svg { stroke: var(--accent2); }
+
+.feature-text {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.card.master .feature-text { color: rgba(255,255,255,.6); }
+
+/* ── CLOSING ── */
+.closing {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 48px;
+  background: var(--ink);
+  border-radius: 2px;
+  padding: 52px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing::after {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,107,74,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.closing-text {}
+
+.closing-phrase {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 14px;
+}
+
+.closing-phrase em {
+  font-style: italic;
+  color: var(--accent2);
+}
+
+.closing-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,.4);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 420px;
+}
+
+.closing-action { flex-shrink: 0; position: relative; z-index: 1; }
+
+.whatsapp-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  padding: 20px 32px;
+  border-radius: 2px;
+  transition: background .2s ease, transform .2s ease;
+  text-align: center;
+  min-width: 200px;
+}
+
+.whatsapp-btn:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+}
+
+.btn-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+}
+
+.btn-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.btn-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-legal {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink4);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink4);
+}
+
+/* ── FLOATING WA ── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 22px 14px 16px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(26,107,74,.35);
+  animation: floatGlow 3s ease-in-out infinite;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 8px 40px rgba(26,107,74,.5);
+}
+
+.wf-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+  background: var(--accent);
+  opacity: 0;
+  animation: wfPulse 3s ease-out infinite;
+}
+
+@keyframes wfPulse {
+  0%   { transform: scale(1); opacity: .5; }
+  70%  { transform: scale(1.18); opacity: 0; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+
+@keyframes floatGlow {
+  0%, 100% { box-shadow: 0 4px 24px rgba(26,107,74,.35); }
+  50%       { box-shadow: 0 6px 36px rgba(26,107,74,.55); }
+}
+
+.wf-icon { position: relative; flex-shrink: 0; }
+.wf-text { position: relative; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .page { padding: 40px 24px 100px; }
+  .header { grid-template-columns: 1fr; gap: 24px; }
+  .header-right { text-align: left; }
+  .header-services { align-items: flex-start; }
+  .header-tagline { margin-left: 0; max-width: none; }
+  .header-title { font-size: 44px; }
+  .cards { grid-template-columns: 1fr; }
+  .closing { grid-template-columns: 1fr; gap: 32px; padding: 40px 32px; }
+  .whatsapp-btn { min-width: unset; width: 100%; }
+  .footer { flex-direction: column; gap: 8px; text-align: center; }
+  .whatsapp-float { bottom: 20px; right: 16px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="eyebrow">Marketing Digital · Colombia</div>
+      <h1 class="header-title">Presencia que<br><em>genera clientes</em></h1>
+    </div>
+    <div class="header-right">
+      <p class="header-tagline">Todo lo que necesitas para crecer digitalmente, en un solo servicio.</p>
+      <div class="header-services">
+        <span class="service-pill">Landing Page</span>
+        <span class="service-pill">Gestión de Ads</span>
+        <span class="service-pill">Mantenimiento</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CARDS -->
+  <div class="cards">
+
+    <!-- PROFESIONAL -->
+    <div class="card">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="plan-label">Plan 01</div>
+        <div class="card-name">Profesional</div>
+        <div class="card-desc">Para negocios que quieren crecer con una presencia digital seria y organizada.</div>
+
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-label">Inversión inicial</span>
+            <span class="price-amount">$800.000<span class="price-cop">COP</span></span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">Mensualidad</span>
+            <span class="price-amount">$700.000<span class="price-cop">COP</span></span>
+          </div>
+          <div class="price-note">* El presupuesto de Meta Ads es asumido por el cliente.</div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Landing page</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Diseño moderno adaptado al negocio</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Botón directo a WhatsApp</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Google Maps y galería de imágenes</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Formulario de contacto</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Optimización para celulares</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">SEO básico para Google</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Integración con Google Business Profile</div></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Meta Ads mensual</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Creación y administración de 2 campañas</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Publicidad en Facebook e Instagram</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Segmentación por ubicación y público</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Optimización básica de anuncios</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Reporte mensual de resultados</div></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Mantenimiento</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Actualización de contenido</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Cambios básicos en la página</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Soporte por WhatsApp</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MASTER -->
+    <div class="card master">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="plan-label">Plan 02</div>
+        <div class="card-name">Master</div>
+        <div class="card-desc">Para negocios que buscan dominar su mercado y generar más clientes constantemente.</div>
+
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-label">Inversión inicial</span>
+            <span class="price-amount">$1.500.000<span class="price-cop">COP</span></span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">Mensualidad</span>
+            <span class="price-amount">$1.200.000<span class="price-cop">COP</span></span>
+          </div>
+          <div class="price-note">* El presupuesto de Meta Ads es asumido por el cliente.</div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Landing page premium</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Diseño premium con animaciones</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">WhatsApp, Google Maps, galería profesional</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Formulario de contacto optimizado</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">SEO básico para Google</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Segmentación por ubicación y público</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Integración con Google Business Profile</div></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Meta Ads avanzado</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Campañas en Facebook e Instagram</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Creación de creativos para anuncios</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">A/B testing de anuncios</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Remarketing — impactar a quien ya visitó</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Segmentación avanzada de audiencias</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Optimización continua de campañas</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Reporte semanal con métricas clave</div></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Mantenimiento premium</div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Cambios ilimitados en la página</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Soporte prioritario</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Revisión mensual de estrategia</div></div>
+          <div class="feature"><div class="feat-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,7 9,1"/></svg></div><div class="feature-text">Recomendaciones de mejora continua</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-text">
+      <div class="closing-phrase">Sin presencia digital,<br><em>tus clientes los atiende otro.</em></div>
+      <div class="closing-sub">Página web, anuncios y estrategia — todo en un solo servicio. Empieza hoy y comienza a recibir clientes desde el primer mes.</div>
+    </div>
+    <div class="closing-action">
+      <a class="whatsapp-btn" href="https://wa.me/573142328436">
+        <span class="btn-label">Escríbeme al WhatsApp</span>
+        <span class="btn-number">314 232 8436</span>
+        <span class="btn-sub">Respondo en minutos</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-legal">Pagos iniciales adicionales a la mensualidad · Colombia</span>
+    <span class="footer-brand">Marketing Digital</span>
+  </footer>
+
+</div>
+
+<!-- Botón flotante -->
+<a class="whatsapp-float" href="https://wa.me/573142328436">
+  <span class="wf-pulse"></span>
+  <svg class="wf-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wf-text">314 232 8436</span>
+</a>
+
+</body>
+</html>
